@@ -1,6 +1,6 @@
 # OceanKit
 
-Digital Ocean CLI to update account settings.
+Digital Ocean CLI.
 
 ## Installation
 
