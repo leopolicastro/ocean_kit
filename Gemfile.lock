@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ocean_kit (0.1.0)
+    ocean_kit (0.1.1)
       droplet_kit (~> 3.16, >= 3.16.1)
       pastel
       thor (~> 1.2)

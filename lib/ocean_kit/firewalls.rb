@@ -45,7 +45,7 @@ module OceanKit
 
     desc "enable_ssh [firewall_number]", "Enable SSH on given firewall"
     def enable_ssh(number)
-      firewall = do_client.firewalls.find(id: fetch_firewall_id(number))
+      firewall = fetch_firewall(number)
       inbound_rules = firewall_inbound_rules(firewall)
       firewall.inbound_rules = add_ssh_rule(inbound_rules)
       begin
@@ -58,7 +58,7 @@ module OceanKit
 
     desc "disable_ssh [firewall_number]", "Disable SSH on given firewall"
     def disable_ssh(number)
-      firewall = do_client.firewalls.find(id: fetch_firewall_id(number))
+      firewall = fetch_firewall(number)
       inbound_rules = firewall_inbound_rules(firewall)
       firewall.inbound_rules = remove_ssh_rule(inbound_rules)
       begin
@@ -71,8 +71,8 @@ module OceanKit
 
     private
 
-    def fetch_firewall_id(number)
-      do_client.firewalls.all.each_with_index.filter { |firewall, index| index == number.to_i }.flatten.first.id
+    def fetch_firewall(number)
+      do_client.firewalls.all.each_with_index.filter { |firewall, index| index == number.to_i }.flatten.first
     end
 
     def update_firewall(firewall)
