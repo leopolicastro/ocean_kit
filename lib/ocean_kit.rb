@@ -4,10 +4,17 @@ require "droplet_kit"
 require_relative "ocean_kit/version"
 require_relative "./ocean_kit/ocean_cli"
 
+require "yaml"
+
 module OceanKit
   class OceanClient
     def client
-      DropletKit::Client.new(access_token: "a2de9724bd9eda0ea8bebc4454b9750fc034dc413c4c1b869ea8392b9ae338bf")
+      DropletKit::Client.new(access_token: access_token)
+    end
+
+    def access_token
+      credentials_file = YAML.load(File.read(File.expand_path("~/.ocean_kit/credentials.yml")))
+      credentials_file["digital_ocean_token"]
     end
   end
 
