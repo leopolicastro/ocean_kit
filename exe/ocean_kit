@@ -2,4 +2,6 @@
 
 require "ocean_kit"
 
-OceanKit::OceanCLI.start(ARGV)
+require_relative "../lib/helpers"
+
+OceanKit::Client.start(ARGV)

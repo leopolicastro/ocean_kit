@@ -1,8 +1,6 @@
 # OceanKit
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ocean_kit`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Digital Ocean CLI to update account settings.
 
 ## Installation
 
@@ -22,7 +20,43 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+- OceanKit expects a `~/.ocean_kit/credentials.yml` file to exist on your computer, server etc.
+
+  - The file should have the following format:
+
+    ```yml
+    digital_ocean_token: your_digital_ocean_personal_access_token
+    ```
+
+For a list of available commands run
+
+```
+$ ocean_kit
+```
+
+Sample Output:
+
+```text
+Commands:
+  ocean_kit firewalls SUBCOMMAND ...ARGS  # manage your DO firewall
+  ocean_kit help [COMMAND]                # Describe available commands or one specific command
+```
+
+```
+ocean_kit firewalls
+```
+
+Sample output:
+
+```text
+Commands:
+  ocean_kit firewalls disable_all_ssh                # Disables SSH on all firewalls
+  ocean_kit firewalls disable_ssh [firewall_number]  # Disable SSH on given firewall
+  ocean_kit firewalls enable_all_ssh                 # Enables SSH on all firewalls
+  ocean_kit firewalls enable_ssh [firewall_number]   # Enable SSH on given firewall
+  ocean_kit firewalls help [COMMAND]                 # Describe subcommands or one specific subcommand
+  ocean_kit firewalls list                           # Lists all firewalls for account.
+```
 
 ## Development
 
@@ -34,10 +68,12 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ocean_kit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ocean_kit/blob/main/CODE_OF_CONDUCT.md).
 
+- Currently only has very basic functionality to list firewalls, and enable or disable ssh on them.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
 
-Everyone interacting in the OceanKit project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ocean_kit/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the OceanKit project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/leopolicastro/ocean_kit/blob/main/CODE_OF_CONDUCT.md).

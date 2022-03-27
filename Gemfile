@@ -7,6 +7,8 @@ gemspec
 
 gem "droplet_kit", "~> 3.16", ">= 3.16.1"
 
+gem "pastel"
+
 gem "rake", "~> 13.0"
 
 gem "rspec", "~> 3.0"

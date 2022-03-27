@@ -1,13 +1,44 @@
 # frozen_string_literal: true
 
-require "thor"
-
 module OceanKit
   class Firewalls < Thor
-    desc "list", "Lists all firewalls"
+    desc "list", "Lists all firewalls for account."
     def list
+      puts pastel.white.bold.underline("Firewalls:\n")
       do_client.firewalls.all.each_with_index do |firewall, index|
-        puts "[#{index}]: Firewall #{firewall.name} has #{firewall.droplet_ids.count} droplets"
+        puts pastel.white.bold("[#{index}]: Firewall #{firewall.name} has #{firewall.droplet_ids.count} droplets")
+      end
+    end
+
+    desc "enable_all_ssh", "Enables SSH on all firewalls"
+    def enable_all_ssh
+      puts pastel.white.bold("Enabling SSH on all firewalls")
+      do_client.firewalls.all.each_with_index do |fw, index|
+        firewall = do_client.firewalls.find(id: fw.id)
+        inbound_rules = firewall_inbound_rules(firewall)
+        firewall.inbound_rules = add_ssh_rule(inbound_rules)
+        begin
+          update_firewall(firewall)
+          puts pastel.green.bold("SSH enabled on firewall #{firewall.name}")
+        rescue DropletKit::Error => e
+          puts pastel.red.bold("Error: #{e.message}")
+        end
+      end
+    end
+
+    desc "disable_all_ssh", "Disables SSH on all firewalls"
+    def disable_all_ssh
+      puts pastel.white.bold("Disabling SSH on all firewalls")
+      do_client.firewalls.all.each_with_index do |fw, index|
+        firewall = do_client.firewalls.find(id: fw.id)
+        inbound_rules = firewall_inbound_rules(firewall)
+        firewall.inbound_rules = remove_ssh_rule(inbound_rules)
+        begin
+          update_firewall(firewall)
+          puts pastel.green.bold("SSH disabled on firewall #{firewall.name}")
+        rescue DropletKit::Error => e
+          puts pastel.red.bold("Error: #{e.message}")
+        end
       end
     end
 
@@ -25,9 +56,9 @@ module OceanKit
       firewall.inbound_rules = add_ssh_rule(inbound_rules)
       begin
         update_firewall(firewall)
-        puts "SSH enabled on firewall #{firewall.name}"
+        puts pastel.green.bold("SSH enabled on firewall #{firewall.name}")
       rescue DropletKit::Error => e
-        puts "Error: #{e.message}"
+        puts pastel.red.bold("Error: #{e.message}")
       end
     end
 
@@ -45,9 +76,9 @@ module OceanKit
       firewall.inbound_rules = remove_ssh_rule(inbound_rules)
       begin
         update_firewall(firewall)
-        puts "SSH disabled on firewall #{firewall.name}"
+        puts pastel.green.bold("SSH disabled on firewall #{firewall.name}")
       rescue DropletKit::Error => e
-        puts "Error: #{e.message}"
+        puts pastel.red.bold("Error: #{e.message}")
       end
     end
 
@@ -68,11 +99,6 @@ module OceanKit
       firewall.inbound_rules.map(&:to_h)
     end
 
-    def do_client
-      @digital_ocean = OceanKit::OceanClient.new
-      @digital_ocean.client
-    end
-
     def new_inbound_rule(rule)
       DropletKit::FirewallInboundRule.new(
         protocol: rule[:protocol],
@@ -87,6 +113,14 @@ module OceanKit
 
     def add_ssh_rule(rules_array)
       rules_array << {protocol: "tcp", ports: "22", sources: {addresses: ["0.0.0.0/0", "::/0"]}}
+    end
+
+    def pastel
+      Pastel.new
+    end
+
+    def find_firewall_by_id(id)
+      do_client.firewalls.find(id:)
     end
   end
 end
