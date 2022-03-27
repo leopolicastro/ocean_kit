@@ -2,4 +2,6 @@
 
 require "ocean_kit"
 
+check_credentials_file
+
 OceanKit::Client.start(ARGV)

@@ -11,7 +11,13 @@ require_relative "./ocean_kit/helpers/base"
 
 module OceanKit
   class Client < Thor
-    desc "firewalls SUBCOMMAND ...ARGS", "manage your DO firewall"
+    desc "config SUBCOMMAND ...ARGS", "Create OceanKit folder and credentials.yml file"
+    subcommand "config", Config
+
+    desc "droplets SUBCOMMAND ...ARGS", "manage your Digital Ocean droplets"
+    subcommand "droplets", Droplets
+
+    desc "firewalls SUBCOMMAND ...ARGS", "manage your Digital Ocean firewalls"
     subcommand "firewalls", Firewalls
   end
 

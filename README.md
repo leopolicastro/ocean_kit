@@ -55,7 +55,7 @@ Commands:
   ocean_kit firewalls enable_all_ssh                 # Enables SSH on all firewalls
   ocean_kit firewalls enable_ssh [firewall_number]   # Enable SSH on given firewall
   ocean_kit firewalls help [COMMAND]                 # Describe subcommands or one specific subcommand
-  ocean_kit firewalls list                           # Lists all firewalls for account.
+  ocean_kit firewalls list                           # Lists all firewalls.
 ```
 
 ## Development

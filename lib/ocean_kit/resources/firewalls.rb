@@ -2,7 +2,7 @@
 
 module OceanKit
   class Firewalls < Thor
-    desc "list", "Lists all firewalls for account."
+    desc "list", "Lists all firewalls."
     def list
       puts pastel.white.bold.underline("Firewalls:\n")
       do_client.firewalls.all.each_with_index do |firewall, index|
