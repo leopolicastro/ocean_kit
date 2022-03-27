@@ -6,8 +6,6 @@ end
 
 def access_token
   credentials_file["digital_ocean_token"]
-rescue => e
-  puts pastel.red.bold("Error: #{e.message}")
 end
 
 def credentials_file
