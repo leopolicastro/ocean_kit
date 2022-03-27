@@ -2,6 +2,4 @@
 
 require "ocean_kit"
 
-require_relative "../lib/helpers"
-
 OceanKit::Client.start(ARGV)
