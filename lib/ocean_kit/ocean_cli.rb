@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 
-require 'thor'
+require "thor"
+require_relative "./firewalls"
 
 module OceanKit
-  class OceanCli < Thor
-    desc 'hello [name]', 'say my name'
-    def hello(name)
-      if name == 'Heisenberg'
-        puts 'you are goddman right'
-      else
-        puts 'say my name'
-      end
-    end
+  class OceanCLI < Thor
+    desc "firewalls SUBCOMMAND ...ARGS", "manage your DO firewall"
+    subcommand "firewalls", Firewalls
   end
 end

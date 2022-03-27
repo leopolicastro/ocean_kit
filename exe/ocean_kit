@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'ocean_kit'
+require "ocean_kit"
 
-OceanKit::OceanCli.start(ARGV)
+OceanKit::OceanCLI.start(ARGV)
