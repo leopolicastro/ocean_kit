@@ -15,7 +15,7 @@ module OceanKit
         YAML
       end
       puts pastel.green.bold("Successfully setup OceanKit environment.")
-      puts pastel.white.bold("Please add your Digital Ocean personal access token your credentials in ~/.ocean_kit/credentials.yml")
+      puts pastel.white.bold("Please add your Digital Ocean personal access token your credentials in ~/.ocean_kit/credentials.yml") if access_token.nil?
     end
   end
 end

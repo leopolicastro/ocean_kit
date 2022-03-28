@@ -14,7 +14,7 @@ end
 
 def check_credentials_file
   if credentials_file.nil?
-    puts pastel.red.bold("Error: credentials file not found. Please run `ocean_kit setup` first.")
+    puts pastel.red.bold("Error: credentials file not found. Please run `ocean_kit config setup` first.")
     exit 1
   end
 end

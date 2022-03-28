@@ -24,11 +24,17 @@ Or install it yourself as:
 
   - The file should have the following format:
 
-    ```yml
-    digital_ocean_token: your_digital_ocean_personal_access_token
-    ```
+        ```yml
+        digital_ocean_token: your_digital_ocean_personal_access_token
+        ```
 
-For a list of available commands run
+- You can also generate the file and folder by running:
+
+```bash
+$ ocean_kit config setup
+```
+
+For a full list of available commands run
 
 ```
 $ ocean_kit
@@ -66,7 +72,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ocean_kit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/ocean_kit/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/leopolicastro/ocean_kit. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/leopolicastro/ocean_kit/blob/main/CODE_OF_CONDUCT.md).
 
 - Currently only has very basic functionality to list firewalls, and enable or disable ssh on them.
 
