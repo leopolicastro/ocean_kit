@@ -69,7 +69,7 @@ module OceanKit
       end
     end
 
-    desc "enable port 80", "Enable HTTP on given firewall"
+    desc "enable_http", "Enable HTTP on given firewall"
     def enable_http(number)
       firewall = fetch_firewall(number)
       inbound_rules = firewall_inbound_rules(firewall)
