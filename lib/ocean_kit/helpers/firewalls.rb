@@ -34,3 +34,11 @@ end
 def add_ssh_rule(rules_array)
   rules_array << {protocol: "tcp", ports: "22", sources: {addresses: ["0.0.0.0/0", "::/0"]}}
 end
+
+def add_http_rule(rules_array)
+  rules_array << {protocol: "tcp", ports: "80", sources: {addresses: ["0.0.0.0/0", "::/0"]}}
+end
+
+def remove_http_rule(rules_array)
+  rules_array.delete_if { |r| r[:ports] == "80" }
+end

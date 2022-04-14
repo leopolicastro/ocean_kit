@@ -68,5 +68,31 @@ module OceanKit
         puts pastel.red.bold("Error: #{e.message}")
       end
     end
+
+    desc "enable port 80", "Enable HTTP on given firewall"
+    def enable_http(number)
+      firewall = fetch_firewall(number)
+      inbound_rules = firewall_inbound_rules(firewall)
+      firewall.inbound_rules = add_http_rule(inbound_rules)
+      begin
+        update_firewall(firewall)
+        puts pastel.green.bold("HTTP enabled on firewall #{firewall.name}")
+      rescue DropletKit::Error => e
+        puts pastel.red.bold("Error: #{e.message}")
+      end
+    end
+
+    desc "disable_http [firewall_number]", "Disable HTTP on given firewall"
+    def disable_http(number)
+      firewall = fetch_firewall(number)
+      inbound_rules = firewall_inbound_rules(firewall)
+      firewall.inbound_rules = remove_http_rule(inbound_rules)
+      begin
+        update_firewall(firewall)
+        puts pastel.green.bold("HTTP disabled on firewall #{firewall.name}")
+      rescue DropletKit::Error => e
+        puts pastel.red.bold("Error: #{e.message}")
+      end
+    end
   end
 end
